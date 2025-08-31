@@ -51,8 +51,8 @@ st.sidebar.markdown(
 
 
 # ---------------- Load Model ----------------
-MODEL_PATH = r"biofuel_model.joblib"
-META_PATH = r"D:\skill4future\project sub\final project biofuel\metadata.json"
+MODEL_PATH = r"D:\skill4future\project sub\final project biofuel\saved_models\biofuel_model.joblib"
+META_PATH = r"D:\skill4future\project sub\final project biofuel\saved_models\metadata.json"
 DATASET_PATH = r"D:\skill4future\project sub\final project biofuel\crop_production.csv"  # dataset with state/crop info
 GEOJSON_PATH =r"D:\skill4future\project sub\final project biofuel\india_states.geojson"
 
