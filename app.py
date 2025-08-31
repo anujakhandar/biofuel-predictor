@@ -493,7 +493,7 @@ if st.button("🔮 Predict Biofuel Energy"):
 #     except Exception as e:
 #         st.error(f"Error: {e}")
 # ---------------- Batch Prediction ----------------
-st.header("📂 Batch Prediction from CSV")
+st.header("📑 Biofuel Potential Analysis (CSV Upload)")
 st.markdown("""
 📌 **Upload a CSV file with these columns:**  
 - `State_Name` → e.g., Maharashtra, Punjab  
@@ -720,7 +720,7 @@ if batch_df is not None and "State_Name" in batch_df:
 #     st.info("📂 Upload a batch CSV to see leaderboard rankings.")
 
 # --- Leaderboard View ---
-st.subheader("📊 Top Contributors to Biofuel Potential")
+st.subheader("🥇 Top Contributors to Biofuel Potential")
 
 if batch_df is not None and "State_Name" in batch_df:
 
