@@ -751,8 +751,8 @@ if batch_df is not None and "State_Name" in batch_df:
         else:
             st.info("No Season column in dataset.")
 
-else:
-    st.info("📂 Upload a batch CSV to see leaderboard rankings.")
+# else:
+#     st.info("📂 Upload a batch CSV to see leaderboard rankings.")
 
 # --- Time-Series Forecasting ---
 from sklearn.linear_model import LinearRegression
@@ -844,8 +844,8 @@ if batch_df is not None and "State_Name" in batch_df and "Crop" in batch_df:
     except Exception as e:
         st.error(f"Could not generate recommendations: {e}")
 
-else:
-    st.info("Upload data with 'State_Name' and 'Crop' columns to generate recommendations.")
+# else:
+#     st.info("Upload data with 'State_Name' and 'Crop' columns to generate recommendations.")
 
 
 
