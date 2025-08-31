@@ -51,10 +51,29 @@ st.sidebar.markdown(
 
 
 # ---------------- Load Model ----------------
-MODEL_PATH = r"D:\skill4future\project sub\final project biofuel\saved_models\biofuel_model.joblib"
-META_PATH = r"D:\skill4future\project sub\final project biofuel\saved_models\metadata.json"
-DATASET_PATH = r"D:\skill4future\project sub\final project biofuel\crop_production.csv"  # dataset with state/crop info
-GEOJSON_PATH =r"D:\skill4future\project sub\final project biofuel\india_states.geojson"
+MODEL_PATH = "saved_models/biofuel_model.joblib"
+META_PATH = "saved_models/metadata.json"
+DATASET_PATH = "crop_production.csv"
+GEOJSON_PATH = "india_states.geojson"
+import joblib
+import json
+import pandas as pd
+import os
+
+# Load model
+pipe = joblib.load(MODEL_PATH)
+
+# Load metadata
+with open(META_PATH, "r") as f:
+    meta = json.load(f)
+
+# Load dataset
+df = pd.read_csv(DATASET_PATH)
+
+# Load GeoJSON
+import json
+with open(GEOJSON_PATH, "r", encoding="utf-8") as f:
+    geojson = json.load(f)
 
 # -------------------------
 # Helpers
