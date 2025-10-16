@@ -22,32 +22,165 @@ st.set_page_config(
 )
 
 
-# --- Sidebar ---
-st.sidebar.title("🌱 Project Info")
 
+# ==========================================================
+# CUSTOM STYLING (White Theme + UI Enhancements)
+# ==========================================================
+st.markdown("""
+    <style>
+    /* Global App Background and Font */
+    body, .stApp {
+        # background-color: #ffffff;
+        # color: #222222;
+        font-family: "Poppins", sans-serif;
+    }
+
+    # /* Sidebar */
+    # section[data-testid="stSidebar"] {
+    #     background-color: #f7f9fb;
+    #     border-right: 2px solid #e0e0e0;
+    # }
+
+    /* Titles and Headers */
+    h1, h2, h3 {
+        color: #white!important;
+        font-weight: 600 !important;
+    }
+
+    /* Buttons */
+    div.stButton > button {
+        background-color: #2d6a4f;
+        color: white;
+        border-radius: 10px;
+        padding: 0.5rem 1rem;
+        font-weight: 500;
+        border: none;
+        transition: 0.3s;
+    }
+    div.stButton > button:hover {
+        background-color: #40916c;
+        color: #fff;
+    }
+
+    /* DataFrame */
+    .dataframe {
+        border-radius: 10px !important;
+        border: 1px solid #ddd !important;
+    }
+
+    /* Success / Warning / Error boxes */
+    .stSuccess {
+        background-color: #d8f3dc !important;
+        color: #1b4332 !important;
+    }
+
+    /* Metric cards or sections */
+    .stMarkdown {
+        font-size: 16px !important;
+    }
+
+    /* Centering charts */
+    div[data-testid="stPlotlyChart"], div[data-testid="stPyplotChart"] {
+        background-color: #ffffff;
+        padding: 1rem;
+        border-radius: 10px;
+        box-shadow: 0px 2px 6px rgba(0,0,0,0.05);
+    }
+
+    # /* Sidebar Radio */
+    # div[role="radiogroup"] > label > div {
+    #     background-color: #e9f5ec !important;
+    #     border-radius: 8px;
+    #     padding: 6px 10px;
+    # }
+    /* Hide default Streamlit footer */
+    footer {visibility: hidden;}
+
+    /* Custom wide footer */
+    .footer {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100vw;
+        background-color: #000000;
+        color: white;
+        text-align: center;
+        padding: 14px 0;
+        font-size: 15px;
+        font-family: "Poppins", sans-serif;
+        border-top: 2px solid #2d6a4f;
+        z-index: 1000;
+    }
+
+    .footer a {
+        color: #74c69d;
+        text-decoration: none;
+        font-weight: 500;
+    }
+
+    .footer a:hover {
+        text-decoration: underline;
+    }
+            
+
+    
+
+   </style>
+""", unsafe_allow_html=True)
+
+
+
+# ================= Sidebar Logo =================
+# Display a logo image
+st.sidebar.image("logo.png", use_container_width=True)  # replace with your logo path
+# --- Sidebar Description Single Box with Improved Word Spacing ---
 st.sidebar.markdown(
     """
-    ### 📌 Project Summary  
-    This app predicts **biofuel energy potential** from agricultural waste 
-    using machine learning.  
-    It supports single prediction, batch uploads, and visualization through 
-    charts and an interactive India map.  
-
-    ---
-    ### 👥 Team Members  
-    - Anuja Khandar  
-    - Shruti Bhakte  
-    - Utkarsha Tamgire  
-    - Gargi Bhoyar  
-    - Sujal Girolkar  
-
-    ---
-    <div style="text-align:left; font-size:15px; margin-top:10px;">
-        🚀 <b>Skill4Future 2025</b>
+    <div style="
+        background-color: #1a3d2f;       /* dark teal green */
+        color: #ffffff;                  
+        padding: 25px 20px;              
+        border-radius: 12px;             
+        font-family: 'Open Sans', sans-serif; 
+        font-size: 14px;
+        line-height: 1.7;                /* space between lines */
+        word-spacing: 2px;               /* space between words */
+        letter-spacing: 0.5px;           /* space between letters */
+        text-align: justify;
+        box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+        margin-bottom: 20px;
+    ">
+        <p style="margin: 0 0 15px 0;">
+        🌱 A platform to explore and analyze biofuel production, energy efficiency, 
+        and crop insights for a sustainable future.
+        </p>
+        <p style="margin: 0;">
+        This app predicts biofuel energy potential from agricultural waste using machine learning.
+        It supports single prediction, batch uploads, and visualization through charts and an interactive India map.
+        </p>
     </div>
     """,
     unsafe_allow_html=True
 )
+
+
+
+# # Optional: Add the project name below the logo
+# st.sidebar.markdown("""
+#     <div style="
+#         font-family: 'Montserrat', sans-serif;
+#         font-size: 28px;
+#         font-weight: 800;
+#         color: #4CAF50;
+#         text-align: center;
+#         margin-top: 10px;
+#         margin-bottom: 20px;
+#         line-height: 1.2;
+#     ">
+      
+#     </div>
+# """, unsafe_allow_html=True)
+
 
 
 # ---------------- Load Model ----------------
@@ -460,12 +593,25 @@ if st.button("🔮 Predict Biofuel Energy"):
         # Pass the full DataFrame to the pipeline
         pred = float(model_obj.predict(inp)[0])
 
-        # Display results
-        st.markdown('<div class="card">', unsafe_allow_html=True)
-        st.metric("Estimated Biofuel Energy (GJ)", f"{pred:,.2f}")
-        st.write(f"Energy per tonne: **{pred/(production or 1):.3f} GJ/t**")
-        st.write(f"Energy per hectare: **{pred/(area or 1):.3f} GJ/ha**")
-        st.markdown('</div>', unsafe_allow_html=True)
+        # # Display results
+        # st.markdown('<div class="card">', unsafe_allow_html=True)
+        # st.metric("Estimated Biofuel Energy (GJ)", f"{pred:,.2f}")
+        # st.write(f"Energy per tonne: **{pred/(production or 1):.3f} GJ/t**")
+        # st.write(f"Energy per hectare: **{pred/(area or 1):.3f} GJ/ha**")
+        # st.markdown('</div>', unsafe_allow_html=True)
+        # Display results with black font
+        # Display results with black font
+        st.markdown(
+            f"""
+            <div class="card" style="color: white;">
+                <h3 style="color: white;">Estimated Biofuel Energy (GJ): {pred:,.2f}</h3>
+                <p style="color: white;">Energy per tonne: <b>{pred/(production or 1):.3f} GJ/t</b></p>
+                <p style="color: white;">Energy per hectare: <b>{pred/(area or 1):.3f} GJ/ha</b></p>
+            </div>
+            """,
+            unsafe_allow_html=True
+        )
+
 
     except Exception as e:
         st.error(f"Prediction failed: {e}")
@@ -996,13 +1142,24 @@ if batch_df is not None and "State_Name" in batch_df:
 
 
 
+# # --- Footer ---
+# st.markdown(
+#     """
+#     <hr style="margin-top: 2rem; margin-bottom: 1rem; border: 1px solid #ccc;">
+#     <div style="text-align: center; color: grey; font-size: 14px;">
+#         Prakriti <br>
+#         The Biofuel Energy Potential Predictor is a data-driven platform designed to analyze crop production and agricultural data to estimate biofuel energy potential. By visualizing energy per tonne, per hectare, and across regions, it empowers users, researchers, and policymakers to make informed decisions that enhance energy efficiency and promote sustainable biofuel production. This project bridges agriculture and renewable energy, providing actionable insights for a cleaner and more sustainable future.”
+#     </div>
+#     """,
+#     unsafe_allow_html=True
+# )
 # --- Footer ---
 st.markdown(
     """
-    <hr style="margin-top: 2rem; margin-bottom: 1rem;">
-    <div style="text-align: center; color: grey; font-size: 14px;">
-        🌱 Biofuel Energy Potential Predictor 
-        (2025 Skill4Future Project)
+    <hr style="margin-top: 2rem; margin-bottom: 1rem; border: 1px solid #ccc;">
+    <div style="text-align: center; color: white; font-size: 20px; font-family: poppins;">
+        Prakriti<br>
+        
     </div>
     """,
     unsafe_allow_html=True
