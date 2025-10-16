@@ -163,7 +163,11 @@ st.sidebar.markdown(
     unsafe_allow_html=True
 )
 
-
+import os
+if os.path.exists("logo.png"):
+    st.sidebar.image("logo.png", use_container_width=True)
+else:
+    st.sidebar.write("Logo not found")
 
 # # Optional: Add the project name below the logo
 # st.sidebar.markdown("""
