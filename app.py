@@ -130,7 +130,8 @@ st.markdown("""
 
 
 
-st.sidebar.image("ani.png", use_container_width=True)
+st.sidebar.image("ani.png", width=200)
+
 
 
 # --- Sidebar Description Single Box with Improved Word Spacing ---
